@@ -9,6 +9,12 @@ Configuration is read exclusively from environment variables. Defaults below are
 | `PORT` | `8080` | HTTP port the service listens on. |
 | `LOG_LEVEL` | `INFO` | Logging level. One of `DEBUG`, `INFO`, `WARNING`, `ERROR`. |
 
+## Persistence
+
+| Variable | Default | Description |
+|---|---|---|
+| `DATABASE_URL` | _(unset — in-memory store)_ | libpq connection URI of the Postgres database holding the tasks. Set by the platform from the `postgres` resource. When unset or empty the app uses an in-memory store (tests and local runs only; tasks are lost on restart). |
+
 ## Observability
 
 | Variable | Default | Description |

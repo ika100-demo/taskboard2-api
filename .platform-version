@@ -1,0 +1,4 @@
+# Written by /component:new and /platform:update; read by /platform:doctor.
+platform: 5.8.3
+shape: service-python
+ref: main

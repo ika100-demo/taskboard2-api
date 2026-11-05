@@ -1,4 +1,7 @@
-"""Smoke tests for spec 001 (AC-001.1, .2, .3, .7, .10), reaching the service by URL only."""
+"""Smoke tests for spec 001 (AC-001.1, .2, .3, .7, .10), reaching the service by URL only.
+
+They are also the checks of AC-002.10: the same tests run against the Postgres-backed service.
+"""
 
 from __future__ import annotations
 
@@ -23,7 +26,7 @@ def _call(base: str, method: str, path: str, body: object = None) -> tuple[int, 
 
 
 @pytest.mark.smoke
-def test_smoke_ac_001_1_create_task_title_only(smoke_base_url: str) -> None:  # AC-001.1
+def test_smoke_ac_001_1_create_task_title_only(smoke_base_url: str) -> None:  # AC-001.1, AC-002.10
     title = f"smoke-{uuid.uuid4()}"
     status, body = _call(smoke_base_url, "POST", "/tasks", {"title": title})
     assert status == 201
@@ -34,7 +37,9 @@ def test_smoke_ac_001_1_create_task_title_only(smoke_base_url: str) -> None:  # 
 
 
 @pytest.mark.smoke
-def test_smoke_ac_001_2_create_task_with_due_date(smoke_base_url: str) -> None:  # AC-001.2
+def test_smoke_ac_001_2_create_task_with_due_date(
+    smoke_base_url: str,
+) -> None:  # AC-001.2, AC-002.10
     title = f"smoke-{uuid.uuid4()}"
     status, body = _call(
         smoke_base_url, "POST", "/tasks", {"title": title, "due_date": "2026-12-01"}
@@ -45,7 +50,7 @@ def test_smoke_ac_001_2_create_task_with_due_date(smoke_base_url: str) -> None: 
 
 
 @pytest.mark.smoke
-def test_smoke_ac_001_3_created_task_is_listed(smoke_base_url: str) -> None:  # AC-001.3
+def test_smoke_ac_001_3_created_task_is_listed(smoke_base_url: str) -> None:  # AC-001.3, AC-002.10
     _, created = _call(smoke_base_url, "POST", "/tasks", {"title": f"smoke-{uuid.uuid4()}"})
     status, tasks = _call(smoke_base_url, "GET", "/tasks")
     assert status == 200
@@ -53,7 +58,7 @@ def test_smoke_ac_001_3_created_task_is_listed(smoke_base_url: str) -> None:  # 
 
 
 @pytest.mark.smoke
-def test_smoke_ac_001_7_invalid_title_rejected(smoke_base_url: str) -> None:  # AC-001.7
+def test_smoke_ac_001_7_invalid_title_rejected(smoke_base_url: str) -> None:  # AC-001.7, AC-002.10
     _, before = _call(smoke_base_url, "GET", "/tasks")
     bad = [{}, {"title": 123}, {"title": True}, {"title": None}, {"title": ""}, {"title": " "}]
     for body in bad:
@@ -65,7 +70,9 @@ def test_smoke_ac_001_7_invalid_title_rejected(smoke_base_url: str) -> None:  # 
 
 
 @pytest.mark.smoke
-def test_smoke_ac_001_10_invalid_due_date_rejected(smoke_base_url: str) -> None:  # AC-001.10
+def test_smoke_ac_001_10_invalid_due_date_rejected(
+    smoke_base_url: str,
+) -> None:  # AC-001.10, AC-002.10
     _, before = _call(smoke_base_url, "GET", "/tasks")
     for due in ("tomorrow", "2026-02-30", "2026-12-01T10:00:00Z", 20261201):
         status, resp = _call(

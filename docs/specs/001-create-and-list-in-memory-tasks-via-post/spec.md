@@ -1,7 +1,7 @@
 ---
 spec_id: 001-create-and-list-in-memory-tasks-via-post
 title: Create and list in-memory tasks via POST /tasks and GET /tasks
-status: approved
+status: done
 priority: P1
 shape: service-python
 parent: ika100-demo/taskboard2-gitops:001-create-and-list-tasks
@@ -153,3 +153,5 @@ none
 
 - 2026-11-05 created
 - 2026-11-05 approved
+- 2026-11-05 building
+- 2026-11-05 done

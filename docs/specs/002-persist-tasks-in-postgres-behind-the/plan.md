@@ -10,6 +10,7 @@ tasks:
     covers: [AC-002.1, AC-002.2, AC-002.3, AC-002.4, AC-002.5, AC-002.6, AC-002.7, AC-002.9]
     parallel_safe: false
     depends_on: []
+    done: true
   - id: t2
     title: Select the store from DATABASE_URL in create_app() and map TaskStoreUnavailable to 503
     files: [src/taskboard2_api/main.py, docs/env-vars.md]

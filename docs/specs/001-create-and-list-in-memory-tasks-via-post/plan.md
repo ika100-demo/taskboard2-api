@@ -17,6 +17,7 @@ tasks:
     covers: [AC-001.1, AC-001.2, AC-001.7, AC-001.8, AC-001.9, AC-001.10, AC-001.11]
     parallel_safe: true
     depends_on: []
+    done: true
   - id: t3
     title: Add the /tasks router and the create_app() factory
     files: [src/taskboard2_api/tasks_api.py, src/taskboard2_api/main.py]

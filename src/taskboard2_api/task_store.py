@@ -24,6 +24,10 @@ class TaskStore(Protocol):
         ...
 
 
+class TaskStoreUnavailable(Exception):  # noqa: N818 - name fixed by the contract
+    """The backing store could not be reached or failed; maps to HTTP 503."""
+
+
 class InMemoryTaskStore:
     """Process-local store keeping tasks in creation order."""
 

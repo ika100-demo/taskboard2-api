@@ -1,7 +1,7 @@
 ---
 spec_id: 002-persist-tasks-in-postgres-behind-the
 title: Persist tasks in Postgres behind the existing TaskStore, answering 503 when the database is down
-status: approved
+status: done
 priority: P1
 shape: service-python
 parent: ika100-demo/taskboard2-gitops:002-persist-tasks-in-postgres-and-manage
@@ -175,3 +175,5 @@ none
 
 - 2026-11-05 created
 - 2026-11-05 approved
+- 2026-11-05 building
+- 2026-11-05 done
